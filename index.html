@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Taskpad — Kanban Task Board</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <span class="logo">
+          <img src="img.jpg" alt="" aria-hidden="true" />
+          </span>
+          <div>
+            <h1>Taskpad</h1>
+            <p>plan it · move it · finish it</p>
+          </div>
+        </div>
+        <button class="btn primary" id="addBtn">+ New task</button>
+      </header>
+
+      <section class="toolbar" aria-label="Search and filters">
+        <label class="search"
+          ><span aria-hidden="true">⌕</span>
+          <input
+            id="search"
+            type="search"
+            placeholder="Search tasks by title…  ( / )"
+            autocomplete="off"
+          />
+        </label>
+        <select id="fPriority" aria-label="Filter by priority">
+          <option value="all">All priorities</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <select id="fStatus" aria-label="Filter by status">
+          <option value="all">All statuses</option>
+          <option value="todo">To Do</option>
+          <option value="progress">In Progress</option>
+          <option value="done">Completed</option>
+        </select>
+        <button class="btn" id="resetBtn">Reset</button>
+      </section>
+
+      <section class="stats" id="stats" aria-live="polite"></section>
+      <main class="board" id="board"></main>
+    </div>
+
+    <!-- Add / Edit task -->
+    <dialog id="modal">
+      <form id="form">
+        <h2 id="mTitle">New task</h2>
+        <label
+          >Title<input
+            id="fTitle"
+            required
+            maxlength="80"
+            placeholder="e.g. Finish landing page"
+        /></label>
+        <label
+          >Description<textarea
+            id="fDesc"
+            rows="3"
+            maxlength="300"
+            placeholder="Add a few details…"
+          ></textarea>
+        </label>
+        <fieldset>
+          <legend>Priority</legend>
+          <div class="seg">
+            <label
+              ><input type="radio" name="priority" value="low" /><span
+                class="low"
+                >Low</span
+              ></label
+            >
+            <label
+              ><input
+                type="radio"
+                name="priority"
+                value="medium"
+                checked
+              /><span class="medium">Medium</span></label
+            >
+            <label
+              ><input type="radio" name="priority" value="high" /><span
+                class="high"
+                >High</span
+              ></label
+            >
+          </div>
+        </fieldset>
+        <div class="row">
+          <label>Due date<input id="fDue" type="date" /></label>
+          <label
+            >Status
+            <select id="fState">
+              <option value="todo">To Do</option>
+              <option value="progress">In Progress</option>
+              <option value="done">Completed</option>
+            </select>
+          </label>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn primary">Save task</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
